@@ -1,31 +1,128 @@
-body{
-  background-color: black;
-  color:white;
+/* Base styles */
+body {
   font-family: Arial;
 }
 
-p.result{
+p.result {
   font-size: 45px;
   margin-top: 3px;
   margin-bottom: 5px;
 }
-button{
+
+button {
   cursor: pointer;
 }
-.calculator-button{
+
+.calculator-button {
   width: 60px;
-  height:60px;
+  height: 60px;
   border: none;
   border-radius: 30px;
-  /* background-color: rgb(51,51,51); */
-  background-color: #505050;
-  color: white;
+  color: var(--button-text-color);
   font-size: 25px;
   margin-right: 3px;
 }
-.operator-button{
+
+.operator-button {
+  margin-right: 100px; /* Adds horizontal space */
   background-color: #c30164;
 }
-.clear-button{
+
+#more-operations {
+  margin-left: -90px; /* Adds horizontal space only for this button */
+  background-color: #c30164; /* Unique background color for this button */
+}
+.clear-button {
   font-size: 20px;
+}
+.small-text {
+  font-size: 0.50em; /* Adjusts the size of the "10" to be smaller than the main text */
+}
+
+/* Theme-specific styles using CSS variables */
+:root {
+  --background-color: #fff; /* Light theme background */
+  --text-color: #000; /* Light theme text */
+  --button-background-color: #e0e0e0; /* Light theme button background */
+  --button-text-color: #000; /* Light theme button text */
+}
+
+[data-theme="dark"] {
+  --background-color: black; /* Dark theme background */
+  --text-color: #fff; /* Dark theme text */
+  --button-background-color: #505050; /* Dark theme button background, shared with .calculator-button in base style */
+  --button-text-color: #fff; /* Dark theme button text */
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+button, .calculator-button, .operator-button, .clear-button {
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+/* The switch - the box around the slider */
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  --background: #28096b;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--background);
+  transition: .5s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 50%;
+  left: 10%;
+  bottom: 15%;
+  box-shadow: inset 8px -4px 0px 0px #fff000;
+  background: var(--background);
+  transition: .5s;
+}
+
+input:checked + .slider {
+  background-color: #522ba7;
+}
+
+input:checked + .slider:before {
+  transform: translateX(100%);
+  box-shadow: inset 15px -4px 0px 15px #fff000;
+}
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+
+.operator-button {
+  /* If you want the operator buttons to have a different color in the dark mode as well,
+     you can define another CSS variable for it and apply it here */
+  background-color: var(--operator-button-background-color, #c30164); /* Fallback to #c30164 if the variable is not defined */
 }
